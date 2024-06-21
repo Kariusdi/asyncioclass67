@@ -20,8 +20,7 @@ if __name__ == "__main__":
     threads = list()
     
     for index in range(3):
-        func = index == 1
-        if (func) :
+        if (index == 1) :
             func = thread_function_one
         else:
             func = thread_function
