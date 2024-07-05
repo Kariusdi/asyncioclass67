@@ -20,10 +20,21 @@ async def fry_eggs(): # 1
     await asyncio.sleep(3) # 2: pause, another tasks can be run
     print("eggs: ready")
 
+async def toasted_bread():
+    print("bread: prepare ingridients")
+    sleep(1)
+    print("bread: toasting")
+    await asyncio.sleep(3) # 2: pause, another tasks can be run
+    print("bread: ready")
+
 async def main():
     start = time()
-    coros = [make_coffee(), fry_eggs()]
-    await asyncio.gather(*coros) # run all tasks
+    coffee_task = asyncio.create_task(make_coffee()) # create task to set the schedule
+    eggs_task = asyncio.create_task(fry_eggs())
+    bread_task = asyncio.create_task(toasted_bread())
+    await coffee_task
+    await eggs_task
+    await bread_task
     print(f"breakfast is ready in {time()-start} min")
 
 
