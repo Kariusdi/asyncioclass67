@@ -17,17 +17,17 @@ async def cooking_coro(arg):
 
 # main coroutine
 async def main():
-    tasks = ["Rice", "Noodle", "Curry"]
+    cooking_tasks = ["Rice", "Noodle", "Curry"]
     # create many tasks
-    tasks = [asyncio.create_task(cooking_coro(i)) for i in tasks]
+    tasks = [asyncio.create_task(cooking_coro(i)) for i in cooking_tasks]
     # wait for all tasks to complete
     done, pending = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)
     # print result
-    print(f'Completed task: {len(done)}')
+    print(f'Completed task: {len(done)} task.')
     # get the last arg from set (it's a return value in form of result)
     finished = done.pop().result()
     print(f'- {finished[0]} is completed in {finished[1]}')
-    print(f'Uncompleted task: {len(pending)}')
+    print(f'Uncompleted task: {len(pending)} tasks.')
 
 # start the asyncio program
 asyncio.run(main())
