@@ -87,8 +87,8 @@ async def customer_generation(queue: Queue, customers: int):
 # Finally, we use the main method to initialize the queue, 
 # producer, and consumer, and start all concurrent tasks.
 async def main():
-    CUSTOMER = 95
-    QUEUE = 5
+    CUSTOMER = 10
+    QUEUE = 3
     CASHIER = 5
     customer_queue = Queue(QUEUE)
     customer_start_time = time.perf_counter()

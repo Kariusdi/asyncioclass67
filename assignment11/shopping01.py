@@ -76,7 +76,7 @@ async def customer_generation(queue: Queue, customers: int):
 async def main():
     customer_queue = Queue(5)
     customer_start_time = time.perf_counter()
-    customer_producer = asyncio.create_task(customer_generation(customer_queue, 96))
+    customer_producer = asyncio.create_task(customer_generation(customer_queue, 95))
     cashiers = [checkout_customer(customer_queue, i) for i in range(5)]
     
     await asyncio.gather(customer_producer, *cashiers)
