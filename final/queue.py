@@ -21,12 +21,12 @@ async def consumer(queue):
         print('Time: {:.2f} - Consumer consumed Item: {}'.format(time.perf_counter() - timer, item))    
 
 async def main():
+    start_time = time.perf_counter()
     queue = asyncio.Queue()
     producer_tasks = [asyncio.create_task(producer(queue, id)) for id in ["A", "B", "C"]]
     consumer_task = asyncio.create_task(consumer(queue))
     await asyncio.gather(*producer_tasks, consumer_task)
+    print("Time: {:.2f} sec".format(time.perf_counter() - start_time))
 
 if __name__ == "__main__":
-    start_time = time.perf_counter()
     asyncio.run(main())
-    print("Time: {:.2f} sec".format(time.perf_counter() - start_time))
